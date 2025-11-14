@@ -45,3 +45,40 @@ result3 <- film[
 ][, .(film_count = .N), by = name]  # language name
 print(result3)
 
+# 4. Customer names and the store they belong to
+cat("\n--- Task 4: Customer names and the store they belong to ---\n")
+result4 <- customer[
+  store,
+  on = .(store_id),
+  nomatch = 0
+][, .(first_name, last_name, store_id)]
+print(result4)
+
+# 5. Payment: amount, date, and staff who processed it
+cat("\n--- Task 5: Payment amount, date, and staff who processed it ---\n")
+result5 <- payment[
+  staff,
+  on = .(staff_id),
+  nomatch = 0
+][, .(amount, payment_date, staff_first = first_name, staff_last = last_name)]
+print(result5)
+
+# 6. Films that are NOT rented
+cat("\n--- Task 6: Films that are NOT rented ---\n")
+rented_film_ids <- unique(
+  inventory[rental, on = .(inventory_id), nomatch = 0]$film_id
+)
+result6 <- film[!film_id %in% rented_film_ids]
+print(result6)
+
+# 7. Plot any graph (example: film count per rating)
+cat("\n--- Task 7: Plot - Film count per rating ---\n")
+windows()
+plot_data <- film[, .N, by = rating]
+
+ggplot(plot_data, aes(x = rating, y = N)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Film Count per Rating",
+       x = "Rating",
+       y = "Number of Films")
+
