@@ -1,0 +1,22 @@
+[
+  {
+    "rating": "PG",
+    "avg_rental_rate": 3.0519
+  },
+  {
+    "rating": "G",
+    "avg_rental_rate": 3.8889
+  },
+  {
+    "rating": "NC-17",
+    "avg_rental_rate": 2.971
+  },
+  {
+    "rating": "PG-13",
+    "avg_rental_rate": 3.0348
+  },
+  {
+    "rating": "R",
+    "avg_rental_rate": 2.9387
+  }
+]
